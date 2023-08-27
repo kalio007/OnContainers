@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+ web:
+  build: ./frontend
+  ports: 
+    - 5173:3000
+ api:
+  build: ./backend
+  ports:
+    - 3000:3001
+  environment: 
+    DB_URL: monodb://db/vidly
+ db:
+  image: mongo:4.0-xenail
+  ports: 
+    - 27017:27017
+  volumes:
+    - vidly:/data/db
+volumes:
+  vidly:
